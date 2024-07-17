@@ -46,8 +46,10 @@ public class Files {
                 int quantity = Integer.parseInt(parts[2]);
                 Product product = new Product(name, price, quantity);
                 productList.add(product);
-                System.out.println(line);
+                line = br.readLine();
+
             }
+
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
@@ -59,7 +61,7 @@ public class Files {
     public void writeFile() {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(pathFileWriter, true))){
             for (Product product : productList) {
-                bw.write(product.getName() + ", " + product.totalValue());
+                bw.write(product.getName() + ", " + product.totalValue() + "\n");
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
